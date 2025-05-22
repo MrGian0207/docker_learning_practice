@@ -1,0 +1,7 @@
+# Backend ignore
+/backend/pnpm-lock.yaml
+/backend/node_modules
+
+# Frontend ignore
+/frontend/pnpm-lock.yaml
+/frontend/node_modules

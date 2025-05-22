@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2022", // ✅ Modern output
+    "module": "CommonJS", // ✅ Enables top-level await, dynamic imports
+    "moduleResolution": "node", // ✅ Resolves based on Node module rules
+    "esModuleInterop": true, // ✅ Allows import express from 'express'
+    "strict": true, // ✅ Recommended
+    "skipLibCheck": true, // ✅ Speeds up build
+    "forceConsistentCasingInFileNames": true,
+    // "allowImportingTsExtensions": true, // ✅ Allows importing .ts files
+    "outDir": "dist",
+    "baseUrl": "./src"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
