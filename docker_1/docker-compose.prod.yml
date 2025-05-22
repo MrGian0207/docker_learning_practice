@@ -1,0 +1,27 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+      args:
+        - NEXT_PUBLIC_API_URL=https://docker1-backend-production.up.railway.app
+        - NODE_ENV=production
+        - PORT=3000
+    ports:
+      - "3000:3000"
+    # environment:
+    #   - NEXT_PUBLIC_API_URL=https://docker1-backend-production.up.railway.app
+    #   - NODE_ENV=production
+    #   - PORT=3000
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+      - LOG_LEVEL=info

@@ -1,0 +1,49 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    # volumes:
+    #   - ./frontend:/app
+    #   - node_modules_frontend:/app/node_modules
+    # env_file:
+    #   - ./frontend/.env
+    develop:
+      watch:
+        - action: sync
+          path: ./frontend/app
+          target: /app/app
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./frontend/package.json
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    # volumes:
+    #   - ./backend:/app
+    #   - node_modules_backend:/app/node_modules
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./backend/.env
+    develop:
+      watch:
+        - action: sync
+          path: ./backend/src
+          target: /app/src
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: ./backend/package.json
+# volumes:
+#   node_modules_frontend:
+#   node_modules_backend:
